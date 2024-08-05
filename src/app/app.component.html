@@ -1,0 +1,137 @@
+
+<div class="formularioRegistro">
+  <h2>Crear Persona</h2>
+  <form [formGroup]="conductorForm" (submit)="guardar()">
+    <div class="formGroup">
+      <label>Identificacion</label>
+      <input type="number" formControlName="identificacion" class="form-control">
+    </div>
+    <div class="formGroup">
+      <label>Apellido</label>
+      <input type="text" formControlName="apellido" class="form-control">
+    </div>
+    <div class="formGroup">
+      <label>Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control">
+    </div>
+    <div class="formGroup">
+      <label>Telefono</label>
+      <input type="text" formControlName="telefono" class="form-control">
+    </div>
+    <div class="formGroup">
+      <label>Direccion</label>
+      <input type="text" formControlName="direccion" class="form-control">
+    </div>
+    <div class="formGroup">
+      <label>Vehiculo</label>
+      <select name="vehiculo" id="vehiculo" formControlName="vehiculo" class="form-control">
+        <option [ngValue]="item" *ngFor="let item of vehiculo">{{item.placa}}</option>
+      </select>
+    </div>
+    <div class="formGroup">
+      <label>Pedidos</label>
+      <select name="pedidos" id="pedidos" formControlName="pedidos" class="form-control">
+        <option [ngValue]="item" *ngFor="let item of pedidos">{{item.tipo_pedido}}</option>
+      </select>
+    </div>
+    <div>
+      <p></p>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="conductorForm.invalid">guardar</button>
+  </form>
+</div>
+
+<div class="formularioRegistro">
+  <h2>Conductores registrados
+  </h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Identificacion</th>
+        <th>Apellido</th>
+        <th>Nombre</th>
+        <th>Telefono</th>
+        <th>Direccion</th>
+        <th>Vehiculo</th>
+        <th>Pedidos</th>
+        <th>Opciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of conductor">
+        <td>{{item.identificacion}}</td>
+        <td>{{item.apellido}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.telefono}}</td>
+        <td>{{item.direccion}}</td>
+        
+        <td>{{item.vehiculo.placa}}</td>
+       
+        <td>{{item.pedidos.tipo_pedido}}</td>
+        <td>
+          <button type="button" class="btn btn-success" (click)="editar(item)">Editar</button>
+          <button type="button" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div class="formularioRegistro">
+  <h2>Crear Vehiculo </h2>
+  <form [formGroup]="vehiculoForm" (submit)="guardarvehiculo()">
+    <div class="formGroup">
+      <label>Conductor_id</label>
+      <input type="number" formControlName="conductor_id" class="form-control">
+    </div>
+    <div class="formGroup">
+      <label>Modelo</label>
+      <input type="number" formControlName="modelo" class="form-control">
+    </div>
+    <div class="formGroup">
+      <label>placa</label>
+      <input type="text" formControlName="placa" class="form-control">
+    </div>
+    <div class="formGroup">
+      <label>capacidad</label>
+      <input type="number" formControlName="capacidad" class="form-control">
+    </div>
+
+    <div>
+      <p></p>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="vehiculoForm.invalid">guardar</button>
+  </form>
+</div>
+
+<div class="formularioRegistro">
+  <h2>Conductores registrados
+  </h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>conductor_id</th>
+        <th>modelo</th>
+        <th>placa</th>
+        <th>capacidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of vehiculo">
+        <td>{{item.conductor_id}}</td>
+        <td>{{item.modelo}}</td>
+        <td>{{item.placa}}</td>
+        <td>{{item.capacidad}}</td>
+       
+
+        <td>
+          <button type="button" class="btn btn-success" (click)="editarVehiculo(item)">Editar</button>
+          <button type="button" class="btn btn-danger" (click)="eliminarVehiculo(item)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>
+
